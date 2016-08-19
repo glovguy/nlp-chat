@@ -3,9 +3,10 @@
 	<head>
 		<script src="/socket.io/socket.io.js"></script>
 		<script type="text/javascript">
-			var mysocket = "127.0.0.1:1337"
+			var mysocket = "127.0.0.1";
 			if (process.env.PROD=="True") {
-				mysocket = "https://nlp-chat.herokuapp.com/"
+				mysocket = "https://nlp-chat.herokuapp.com";
+				console.log("prod");
 			}
 			var socketio = io.connect(mysocket);
 
