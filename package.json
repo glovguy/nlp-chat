@@ -1,0 +1,8 @@
+{
+  "name": "nlp-chat",
+  "description": "Chat with my NLP things!",
+  "version": "1.0.0",
+  "engines": {
+    "node": "6.3.0"
+  }
+}
