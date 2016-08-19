@@ -4,5 +4,9 @@
   "version": "1.0.0",
   "engines": {
     "node": "6.3.0"
+  },
+  "dependencies": {
+  	"socketio": "1.0.0",
+  	"validator": "5.5.0"
   }
 }
