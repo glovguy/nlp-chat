@@ -1,7 +1,7 @@
 var http = require('http'),
 	fs = require('fs'),
 	validator = require('validator'),
-	port = 1337;
+	port = (process.env.PORT || 5000);
 
 var app = http.createServer(function (request, response) {
 	fs.readFile("client.html", 'utf-8', function (error, data) {
@@ -17,7 +17,7 @@ io.sockets.on('connection', function(socket) {
 	socket.on('message_to_server', function(data) {
 		var escaped_message = validator.escape(data["message"]);
 		io.sockets.emit("message_to_client",{ message: escaped_message });
-		sleep(500).then(() => {
+		sleep(3000).then(() => {
 			io.sockets.emit("message_from_nlp",{ message: "hi there!" });
 		})
 	});
