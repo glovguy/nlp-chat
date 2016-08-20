@@ -3,12 +3,12 @@
 	<head>
 		<script src="/socket.io/socket.io.js"></script>
 		<script type="text/javascript">
-			var mysocket = "127.0.0.1";
-			if (process.env.PROD=="True") {
-				mysocket = "https://nlp-chat.herokuapp.com";
-				console.log("prod");
-			}
-			var socketio = io.connect(mysocket);
+			// var mysocket = "127.0.0.1";
+			// if (process.env.PROD=="True") {
+			// 	mysocket = "https://nlp-chat.herokuapp.com";
+			// 	console.log("prod");
+			// };
+			var socketio = io.connect();
 
 			socketio.on("message_to_client", function(data) {
 				document.getElementById("chatlog").innerHTML = ("<hr/> " + "<span class='message_text'>" + data['message'] + "</span>" + "<span class='sender_indicator''>You</span>" + document.getElementById("chatlog").innerHTML);
