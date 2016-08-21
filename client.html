@@ -10,7 +10,10 @@
     <title>NLP Chat Bot</title>
 
     <!-- Bootstrap -->
-      <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="jumbotron-narrow.css" rel="stylesheet">
 
     <script type="text/javascript">
       var socketio = io.connect();
@@ -32,11 +35,13 @@
   </head>
   <body>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      <script src="js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="dist/js/bootstrap.min.js"></script>
 
-    <input type="text" id="message_input"/>
-    <button onclick="sendMessage()" id="send_button" class="btn btn-lg btn-success">send</button>
+    <div class="jumbotron">
+      <input type="text" id="message_input"/>
+      <button onclick="sendMessage()" id="send_button" class="btn btn-success">send</button>
+    </div>
     <div id="chatlog"></div>
     <script type="text/javascript">
       document.getElementById("message_input")

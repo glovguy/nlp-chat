@@ -4,15 +4,16 @@ var http = require('http'),
 	express = require('express'),
 	port = (process.env.PORT || 5000);
 
-var http = require('http');
 const url = require('url');
 
 var app = express();
 var server = http.createServer(app);
+var io = require('socket.io').listen(server);
 
 app.use(express.static('bower_components/bootstrap'));
 app.use(express.static('bower_components/jquery'));
 app.use(express.static('bootstrap_templates'));
+
 app.get('/', function(request, response) {
 	fs.readFile("client.html", 'utf-8', function (error, data) {
 		response.writeHead(200, {'Content-Type': 'text/html'});
@@ -29,38 +30,27 @@ app.get('/bootstrap.html', function(request, response) {
 	});
 });
 
-app.listen(port, function () {
-  console.log("running... navigate to http://localhost:".concat(port.toString()))
-});
-
-// (function (request, response) {
-// 	fs.readFile("client.html", 'utf-8', function (error, data) {
-// 		response.writeHead(200, {'Content-Type': 'text/html'});
-// 		response.write(data);
-// 		response.end();
-// 	});
-// }).listen(port);
-
-var io = require('socket.io').listen(server);
+server.listen(port);
+console.log("running... navigate to http://localhost:".concat(port.toString()));
 
 callback = function(response) {
 	var str = '';
 
-			  //another chunk of data has been recieved, so append it to `str`
-			  response.on('data', function (chunk) {
-			  	str += chunk;
-			  });
+	//another chunk of data has been recieved, so append it to `str`
+	response.on('data', function (chunk) {
+		str += chunk;
+	});
 
-			  //the whole response has been received, so we just print it out here
-			  response.on('end', function () {
-			  	console.log(str=='True');
-			  	if (str == 'True') {
-			  		nlp_transmit("Why do you want that?");
-			  	} else {
-			  		nlp_transmit("Tell me more...");
-			  	};
-			  });
-			}
+	//the whole response has been received, so we just print it out here
+	response.on('end', function () {
+		console.log(str=='True');
+		if (str == 'True') {
+			nlp_transmit("Why do you want that?");
+		} else {
+			nlp_transmit("Tell me more...");
+		};
+	});
+}
 
 nlp_transmit = function(message) {
 	nlp_message = message;

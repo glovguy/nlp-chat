@@ -10,13 +10,13 @@
     "url": "https://github.com/glovguy/nlp-chat"
   },
   "dependencies": {
-    "express": "^4.14.0",
-    "socketio": "1.0.0",
     "bower": "1.7.9",
+    "express": "4.14.0",
+    "socketio": "1.0.0",
     "validator": "5.5.0"
   },
   "scripts": {
     "start": "node server.js",
-    "postinstall": "bower install --force"
+    "postinstall": "bower install"
   }
 }
