@@ -11,8 +11,7 @@
     "validator": "5.5.0"
   },
   "scripts": {
-  "start": "node server.js",
-  // "test": "mocha",
-  "postinstall": "bower install"
-}
+    "start": "node server.js",
+    "postinstall": "bower install"
+  }
 }
