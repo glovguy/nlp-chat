@@ -12,6 +12,7 @@ var server = http.createServer(app);
 
 app.use(express.static('bower_components/bootstrap'));
 app.use(express.static('bower_components/jquery'));
+app.use(express.static('bootstrap_templates'));
 app.get('/', function(request, response) {
 	fs.readFile("client.html", 'utf-8', function (error, data) {
 		response.writeHead(200, {'Content-Type': 'text/html'});
