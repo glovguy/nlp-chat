@@ -1,0 +1,24 @@
+{
+  "name": "nlp-chat",
+  "description": "Chat with my NLP things!",
+  "main": "server.js",
+  "authors": [
+    "Karl <karlsmith@bouzou.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "nlp"
+  ],
+  "homepage": "https://github.com/glovguy/nlp-chat",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}

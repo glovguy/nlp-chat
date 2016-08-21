@@ -7,15 +7,40 @@ var http = require('http'),
 var http = require('http');
 const url = require('url');
 
-var app = http.createServer(function (request, response) {
+var app = express();
+var server = http.createServer(app);
+
+app.use(express.static('bower_components/bootstrap'));
+app.use(express.static('bower_components/jquery'));
+app.get('/', function(request, response) {
 	fs.readFile("client.html", 'utf-8', function (error, data) {
 		response.writeHead(200, {'Content-Type': 'text/html'});
 		response.write(data);
 		response.end();
 	});
-}).listen(port);
+});
 
-var io = require('socket.io').listen(app);
+app.get('/bootstrap.html', function(request, response) {
+	fs.readFile("mybootstrap.html", 'utf-8', function (error, data) {
+		response.writeHead(200, {'Content-Type': 'text/html'});
+		response.write(data);
+		response.end();
+	});
+});
+
+app.listen(port, function () {
+  console.log("running... navigate to http://localhost:".concat(port.toString()))
+});
+
+// (function (request, response) {
+// 	fs.readFile("client.html", 'utf-8', function (error, data) {
+// 		response.writeHead(200, {'Content-Type': 'text/html'});
+// 		response.write(data);
+// 		response.end();
+// 	});
+// }).listen(port);
+
+var io = require('socket.io').listen(server);
 
 callback = function(response) {
 	var str = '';
@@ -63,5 +88,3 @@ io.sockets.on('connection', function(socket) {
 function sleep (time) {
   return new Promise((resolve) => setTimeout(resolve, time));
 }
-
-console.log("running... navigate to http://localhost:".concat(port.toString()))

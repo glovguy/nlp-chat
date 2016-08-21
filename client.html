@@ -1,47 +1,61 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<script src="/socket.io/socket.io.js"></script>
-		<script type="text/javascript">
-			var socketio = io.connect();
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <script src="/socket.io/socket.io.js"></script>
 
-			socketio.on("message_to_client", function(data) {
-				document.getElementById("chatlog").innerHTML = ("<hr/> " + "<span class='message_text'>" + data['message'] + "</span>" + "<span class='sender_indicator''>You</span>" + document.getElementById("chatlog").innerHTML);
-			});
+    <title>NLP Chat Bot</title>
 
-			socketio.on("message_from_nlp", function(data) {
-				document.getElementById("chatlog").innerHTML = ("<hr/> " + "<span class='message_text'>" + data['message'] + "</span>" + "<span class='sender_indicator'>ChatBot</span>" + document.getElementById("chatlog").innerHTML);
-			});
+    <!-- Bootstrap -->
+      <link href="css/bootstrap.min.css" rel="stylesheet">
 
-			function sendMessage() {
-				var msg = document.getElementById("message_input").value;
-				socketio.emit("message_to_server", { message : msg });
-				document.getElementById("message_input").value = "";
-			}
-		</script>
-	</head>
-	<body>
-		<input type="text" id="message_input"/>
-		<button onclick="sendMessage()" id="send_button">send</button>
-		<div id="chatlog"></div>
-		<script type="text/javascript">
-			document.getElementById("message_input")
-			    .addEventListener("keyup", function(event) {
-			    event.preventDefault();
-			    if (event.keyCode == 13) {
-			        document.getElementById("send_button").click();
-			    }
-			});
-		</script>
-		<style>
-			.sender_indicator {
-				text-align: right;
-				position: absolute;
-				right: 10px;
-			}
-			.message_text {
-				font-size: 1.5em;
-			}
-		</style>
-	</body>
+    <script type="text/javascript">
+      var socketio = io.connect();
+
+      socketio.on("message_to_client", function(data) {
+        document.getElementById("chatlog").innerHTML = ("<hr/> " + "<span class='message_text'>" + data['message'] + "</span>" + "<span class='sender_indicator''>You</span>" + document.getElementById("chatlog").innerHTML);
+      });
+
+      socketio.on("message_from_nlp", function(data) {
+        document.getElementById("chatlog").innerHTML = ("<hr/> " + "<span class='message_text'>" + data['message'] + "</span>" + "<span class='sender_indicator'>ChatBot</span>" + document.getElementById("chatlog").innerHTML);
+      });
+
+      function sendMessage() {
+        var msg = document.getElementById("message_input").value;
+        socketio.emit("message_to_server", { message : msg });
+        document.getElementById("message_input").value = "";
+      }
+    </script>
+  </head>
+  <body>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+
+    <input type="text" id="message_input"/>
+    <button onclick="sendMessage()" id="send_button" class="btn btn-lg btn-success">send</button>
+    <div id="chatlog"></div>
+    <script type="text/javascript">
+      document.getElementById("message_input")
+          .addEventListener("keyup", function(event) {
+          event.preventDefault();
+          if (event.keyCode == 13) {
+              document.getElementById("send_button").click();
+          }
+      });
+    </script>
+    <style>
+      .sender_indicator {
+        text-align: right;
+        position: absolute;
+        right: 10px;
+      }
+      .message_text {
+        font-size: 1.5em;
+      }
+    </style>
+  </body>
 </html>
