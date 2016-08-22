@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <script src="/socket.io/socket.io.js"></script>
 
     <title>NLP Chat Bot</title>
@@ -13,17 +13,17 @@
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="jumbotron-narrow.css" rel="stylesheet">
+    <link href="/jumbotron-narrow.css" rel="stylesheet">
 
     <script type="text/javascript">
       var socketio = io.connect();
 
       socketio.on("message_to_client", function(data) {
-        document.getElementById("chatlog").innerHTML = ("<hr/> " + "<span class='message_text'>" + data['message'] + "</span>" + "<span class='sender_indicator''>You</span>" + document.getElementById("chatlog").innerHTML);
+        document.getElementById("chatlog").innerHTML = ("<br/> " + "<div class='alert alert-success'><span class='message_text'>" + data['message'] + "</span>" + "<span class='pull-right'>You</span></div>" + document.getElementById("chatlog").innerHTML);
       });
 
       socketio.on("message_from_nlp", function(data) {
-        document.getElementById("chatlog").innerHTML = ("<hr/> " + "<span class='message_text'>" + data['message'] + "</span>" + "<span class='sender_indicator'>ChatBot</span>" + document.getElementById("chatlog").innerHTML);
+        document.getElementById("chatlog").innerHTML = ("<br/> " + "<div class='alert alert-info'><span class='message_text'>" + data['message'] + "</span>" + "<span class='pull-right'>NLP bot</span></div>" + document.getElementById("chatlog").innerHTML);
       });
 
       function sendMessage() {
@@ -34,15 +34,15 @@
     </script>
   </head>
   <body>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="dist/js/bootstrap.min.js"></script>
 
-    <div class="jumbotron">
-      <input type="text" id="message_input"/>
-      <button onclick="sendMessage()" id="send_button" class="btn btn-success">send</button>
+    <div class="container">
+    <div class="jumbotron form-group">
+      <label for="message_input">Message:</label>
+      <input type="text" id="message_input" class="form-control"/>
+      <button onclick="sendMessage()" id="send_button" class="btn btn-primary" style="display: none;">send</button>
     </div>
-    <div id="chatlog"></div>
+    <div id="chatlog" class="alert"></div>
+
     <script type="text/javascript">
       document.getElementById("message_input")
           .addEventListener("keyup", function(event) {
@@ -55,12 +55,13 @@
     <style>
       .sender_indicator {
         text-align: right;
-        position: absolute;
+        position: relative;
         right: 10px;
       }
       .message_text {
         font-size: 1.5em;
       }
     </style>
+    </div> <!-- /container -->
   </body>
 </html>
