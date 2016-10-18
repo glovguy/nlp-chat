@@ -19,7 +19,6 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "^3.3.7",
-    "request": "^2.75.0"
+    "bootstrap": "^3.3.7"
   }
 }
