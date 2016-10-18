@@ -57,9 +57,8 @@ io.sockets.on('connection', function(socket) {
 				uri: api_url
 			}, function (error, response, body) {
 			if (!error && response.statusCode == 200) {
-			    console.log("RESPONSE_BODY:");
+			    console.log("RESPONSE BODY:");
 				console.log(body);
-				console.log(body["intention_with_which"]);
 				if (body["intention_with_which"] == true) {
 					nlp_transmit("Why do you want that?");
 				} else {
