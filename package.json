@@ -3,18 +3,20 @@
   "description": "Chat with my NLP things!",
   "version": "1.0.0",
   "engines": {
-    "node": "6.4.0"
+    "node": "6.11.1"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/glovguy/nlp-chat"
   },
   "dependencies": {
+    "analytics-node": "^2.1.0",
     "bower": "1.7.9",
+    "cookie-parser": "^1.4.3",
     "express": "4.14.0",
+    "request": "2.75.0",
     "socketio": "1.0.0",
-    "validator": "5.5.0",
-    "request" : "2.75.0"
+    "validator": "5.5.0"
   },
   "scripts": {
     "start": "node server.js",
